@@ -134,3 +134,20 @@ CREATE TABLE RevInfo(
   timestamp BIGINT NOT NULL,
   userLogin VARCHAR(255)
 );
+
+-- *** SpecialOffer ***
+CREATE TABLE Special(
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  modificationCounter INTEGER NOT NULL,
+  endingday INTEGER,
+  endinghour INTEGER NOT NULL,
+  startingday INTEGER,
+  startinghour INTEGER NOT NULL,
+  name VARCHAR(255),
+  specialprice DECIMAL(19, 2),
+  offerid BIGINT,
+  CONSTRAINT PK_SpecialOffer PRIMARY KEY(id),
+  CONSTRAINT FK_SpecialOffer_offerId FOREIGN KEY(offerId) REFERENCES Offer(id) NOCHECK,
+  CONSTRAINT UK_SpecialOffer_name UNIQUE(name)
+
+);

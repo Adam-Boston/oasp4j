@@ -15,6 +15,7 @@ import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.OfferEntity;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.OfferDao;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.OfferCto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.OfferEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.impl.OffermanagementImpl;
 import io.oasp.module.beanmapping.common.api.BeanMapper;
 import io.oasp.module.test.common.base.ModuleTest;
 
