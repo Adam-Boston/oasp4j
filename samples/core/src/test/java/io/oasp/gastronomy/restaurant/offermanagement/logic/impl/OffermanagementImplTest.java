@@ -11,10 +11,14 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.OfferEntity;
+import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.SpecialEntity;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.OfferDao;
+import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.SpecialDao;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.OfferCto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.OfferEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialOfferEto;
 import io.oasp.module.beanmapping.common.api.BeanMapper;
 import io.oasp.module.test.common.base.ModuleTest;
 
@@ -41,6 +45,9 @@ public class OffermanagementImplTest extends ModuleTest {
   private OfferDao offerDao;
 
   @Mock
+  private SpecialDao specialDao;
+
+  @Mock
   private BeanMapper beanMapper;
 
   /**
@@ -53,6 +60,7 @@ public class OffermanagementImplTest extends ModuleTest {
 
     this.offerManagementImpl = new OffermanagementImpl();
     this.offerManagementImpl.setOfferDao(this.offerDao);
+    this.offerManagementImpl.setSpecialDao(this.specialDao);
     this.offerManagementImpl.setBeanMapper(this.beanMapper);
   }
 
@@ -111,6 +119,33 @@ public class OffermanagementImplTest extends ModuleTest {
     assertThat(responseOfferCto).isNotNull();
     assertThat(responseOfferCto.getOffer()).isEqualTo(offerEto);
 
+  }
+
+  /**
+   *
+   */
+  @Test
+  public void saveSpecialOffer() {
+
+    SpecialEntity specialEntity = new SpecialEntity();
+    SpecialOfferEto specialOfferEto = createSpecialOfferEto();
+
+    when(this.specialDao.save(specialEntity)).thenReturn(specialEntity);
+    when(this.beanMapper.map(specialOfferEto, SpecialEntity.class)).thenReturn(specialEntity);
+    when(this.beanMapper.map(specialEntity, SpecialOfferEto.class)).thenReturn(specialOfferEto);
+
+    SpecialOfferEto responseSpecialOfferEto = this.offerManagementImpl.saveSpecialOffer(specialOfferEto);
+
+    assertThat(responseSpecialOfferEto).isNotNull();
+    assertThat(responseSpecialOfferEto.getName()).isNotNull();
+  }
+
+  private SpecialOfferEto createSpecialOfferEto() {
+
+    SpecialOfferEto specialOfferEto = new SpecialOfferEto();
+    specialOfferEto.setName("specialOffer");
+    specialOfferEto.setSpecialPrice(new Money(150.0));
+    return specialOfferEto;
   }
 
 }
