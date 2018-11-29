@@ -9,7 +9,12 @@ import java.security.Principal;
  * @see io.oasp.gastronomy.restaurant.staffmanagement.common.api.StaffMember#getRole()
  *
  */
+
 // END ARCHETYPE SKIP
+/**
+ * @author ADLAGODA
+ *
+ */
 public enum Role implements Principal {
 
   // BEGIN ARCHETYPE SKIP
@@ -36,7 +41,12 @@ public enum Role implements Principal {
    * {@link io.oasp.gastronomy.restaurant.staffmanagement.common.api.StaffMember}s.
    */
   // END ARCHETYPE SKIP
-  CHIEF("Chief");
+  CHIEF("Chief"),
+
+  /**
+   *
+   */
+  MANAGER("Manager");
 
   private final String name;
 

@@ -16,6 +16,11 @@
   </group>
 
   <!-- BEGIN ARCHETYPE SKIP -->
+  <group id="Manager" type="role">
+    <permissions>
+      <permission id="FindSuppliers"/>
+    </permissions>
+  </group>
   <group id="Waiter" type="role">
     <inherits>
       <group-ref>Barkeeper</group-ref>
